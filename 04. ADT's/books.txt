@@ -6,4 +6,4 @@ Lambert 12
 Miller 3
 Necaise 1, 2, 3
 Wahl 6
-Zelle
+Zelle 2, 3
