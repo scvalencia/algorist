@@ -1,6 +1,6 @@
 Downey 1, 3
 Goodrich 3
-Guttag 
+Guttag 9, 10
 Hetland 
 Lambert 
 Miller 
