@@ -2,7 +2,7 @@ Downey 2, 4 - 14
 Goodrich 14
 Guttag 
 Hetland 1, 2, 9, 10
-Lambert 
+Lambert 20
 Miller 
 Necaise 
 Wahl 
