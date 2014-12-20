@@ -5,5 +5,5 @@ Hetland
 Lambert 11
 Miller 2
 Necaise 4, 5
-Wahl 
+Wahl 7, 8, 9
 Zelle

@@ -5,5 +5,5 @@ Hetland 3 - 8
 Lambert 
 Miller 
 Necaise 
-Wahl 
+Wahl 10
 Zelle
