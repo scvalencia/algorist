@@ -4,6 +4,6 @@ Guttag
 Hetland 
 Lambert 12
 Miller 3
-Necaise 
+Necaise 1, 2, 3
 Wahl 
 Zelle
