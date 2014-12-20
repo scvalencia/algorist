@@ -1,7 +1,7 @@
 Downey 2, 4 - 14
 Goodrich 14
 Guttag 
-Hetland 
+Hetland 1, 2, 9, 10
 Lambert 
 Miller 
 Necaise 
