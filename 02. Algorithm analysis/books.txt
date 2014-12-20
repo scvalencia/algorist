@@ -3,7 +3,7 @@ Goodrich 3
 Guttag 9, 10
 Hetland 
 Lambert 11
-Miller 
+Miller 2
 Necaise 
 Wahl 
 Zelle
