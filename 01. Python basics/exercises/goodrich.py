@@ -194,6 +194,31 @@ def norm(v, p = 2):
 # PROJECTS
 
 # P-1.29
+def catdog_permutation(param = 'catdog'):
+	import string
+
+	def nextPermutation(perm):
+	    k0 = None
+	    for i in range(len(perm)-1):
+	        if perm[i]<perm[i+1]:
+	            k0=i
+	    if k0 == None:
+	        return None
+
+	    l0 = k0+1
+	    for i in range(k0+1, len(perm)):
+	        if perm[k0] < perm[i]:
+	            l0 = i
+
+	    perm[k0], perm[l0] = perm[l0], perm[k0]
+	    perm[k0+1:] = reversed(perm[k0+1:])
+	    return perm
+
+	perm = list(param)
+
+	while perm:
+	    yield ''.join(perm)
+	    perm = nextPermutation(perm)
 
 # P-1.30
 
