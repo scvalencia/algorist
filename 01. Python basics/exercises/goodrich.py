@@ -221,11 +221,71 @@ def catdog_permutation(param = 'catdog'):
 	    perm = nextPermutation(perm)
 
 # P-1.30
+def fold_number(n):
+	count = 0
+	while 2 < n:
+		n = n / 2
+		count += 1
+	return count
 
 # P-1.31
+def make_change(cost, given_amount):
+	if given_amount > cost:
+		money = [50, 10, 5, 1]
+		ans = {i : 0 for i in money}
+		amount = given_amount - cost
+		while amount != 0:
+			if amount > 50:
+				ans[50] = amount % 50
+				amount = (amount / 50)				
+			if amount > 10:
+				ans[10] = amount % 10
+				amount = amount / 10				
+			if amount > 5:
+				ans[5] = amount % 5
+				amount = amount / 5				
+			else:
+				ans[1] = amount
+				amount = 0
+		return ans
+	else:
+		print 'Dumb, you owe me ', str(cost - given_amount)
+		return {}
 
 # P-1.32
+def basic_calculator():
 
+	def is_number(s):
+	    try:
+	    	float(s)
+	        return True
+	    except ValueError: pass
+	    try:
+	    	int(s)
+	        return True
+	    except (TypeError, ValueError):
+			return False
+
+	ans = 0.0
+	stack = []
+	line = raw_input()
+	while line.strip() != '=':
+		line = line.strip()
+
+		if line in ['+', '-']:
+			stack.append(line)
+
+		elif is_number(line):
+			if stack:
+				if stack[0] == '+':
+					ans = ans + float(line)
+				elif stack[0] == '-':
+					ans = ans - float(line)
+			else:
+				ans = float(line)
+		line = raw_input()
+	print ans
+	
 # P-1.33
 
 # P-1.34
