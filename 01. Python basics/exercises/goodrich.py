@@ -81,19 +81,42 @@ def reverse(data):
 		ans[i] = data[(length - 1) - i]
 	return ans
 
-print reverse([1,2,3,4])
-
 # C-1.14
+def odd_product(data):
+	ans = False
+	for i in xrange(len(data)):
+		for j in xrange(len(data)):
+			if i != j and data[i] != data[j]:
+				if data[i] * data[j] % 2 == 1: 
+					ans = True
+					break
+	return ans
 
 # C-1.15
+def distinct1(data):
+	return len(data) == len(set(data))
 
-# C-1.16
+def distinct2(data):
+	ans = True
+	for i in xrange(len(data)):
+		for j in xrange(len(data)):
+			if i != j:
+				if data[i] == data[j]:
+					ans = False
+					break
+	return ans
 
-# C-1.17
+# C-1.16, numeric values are immutable, but not the variables refering to them
+
+# C-1.17, val is a result from an iteration, not an actual reference to the val in list
 
 # C-1.18
+def increasing():
+	return [i * (i + 1) for i in xrabge(0, 10)]
 
 # C-1.19
+def alphabeth():
+	return [chr(i) for i in range(97, 123)]
 
 # C-1.20
 
