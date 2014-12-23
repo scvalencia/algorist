@@ -67,6 +67,7 @@ def sequence_2():
 def sequence_3():
 	print [2 ** i for i in range(9)]
 
+# R-1.12
 def choice(data):
 	from random import randrange
 	return data[randrange(0, len(data))]
@@ -119,22 +120,76 @@ def alphabeth():
 	return [chr(i) for i in range(97, 123)]
 
 # C-1.20
+def shuffle(data):
+	import random
+	ans = []
+	while data:
+		index = random.randint(0, len(data) - 1)
+		ans.append(data[index])
+		data.pop(index)
+	return ans
 
 # C-1.21
+def reverse_lines(data):
+	ans = []
+	try:
+		while True:
+			ans.append(raw_input())
+	except:
+		ans.reverse()
+		for itm in ans:
+			print itm
 
 # C-1.22
+def dot_product(a, b):
+	n = len(a)
+	return [a[i] * b[i] for i in range(n)]
 
 # C-1.23
+def buffer_overflow():
+	lst = [2, 3, 5, 6, 8, 2, 0]
+	try:
+		lst[100] = 1
+	except IndexError:
+		print 'Don\'t try buffer overflow attacks in Python!'
 
 # C-1.24
+def num_vowels(param):
+	vowels = ['a', 'e', 'i', 'o', 'u']
+	vowels += map(lambda y : y.upper, vowels)
+	return len(filter(lambda x : x in vowels, param))
 
 # C-1.25
+def remove_punctuation(sentence):
+	from string import punctuation
+	ans = ''
+	for itm in sentence:
+		if itm not in punctuation:
+			ans += itm
+	return ans
 
-# C-1.26
+# C-1.26 Boring stuff
 
 # C-1.27
+def factors(n):
+	buff = []
+	k = 1
+	while k * k < n:
+		if n % k == 0:
+			yield k
+			buff.append(n // k)
+		k = k + 1
+
+		if k * k == n:
+			yield k
+
+	while buff:
+		yield buff.pop()
 
 # C-1.28
+def norm(v, p = 2):
+	ans = 0.0
+	return reduce(lambda a, b : a + b, map(lambda i : i ** p, v)) ** (1 / (p + 0.0))
 
 # PROJECTS
 
