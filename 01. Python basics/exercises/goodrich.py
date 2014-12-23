@@ -281,15 +281,74 @@ def basic_calculator():
 					ans = ans + float(line)
 				elif stack[0] == '-':
 					ans = ans - float(line)
+				stack.pop(0)
 			else:
 				ans = float(line)
 		line = raw_input()
 	print ans
-	
+
 # P-1.33
+def handheld_calculator():
+
+	def is_number(s):
+	    try:
+	    	float(s)
+	        return True
+	    except ValueError: pass
+	    try:
+	    	int(s)
+	        return True
+	    except (TypeError, ValueError):
+			return False
+
+	ans = 0.0
+	stack = []
+	line = raw_input()
+	while line.strip() != '=':
+		line = line.strip()
+
+		if line in ['RESET', 'CLEAR']:
+			ans = 0.0
+			stack = []
+
+		if line in ['+', '-']:
+			stack.append(line)
+
+		elif is_number(line):
+			if stack:
+				if stack[0] == '+':
+					ans = ans + float(line)
+				elif stack[0] == '-':
+					ans = ans - float(line)
+				stack.pop(0)
+			else:
+				ans = float(line)
+		line = raw_input()
+	print ans
 
 # P-1.34
+def child_punishment():
+	import random
+	typos_number = 2
+	iterations = 100
+	typos_index = [random.choice(range(100)) for i in range(typos_number)]
+	typos = ['i wol never spam my friends again', 'I will never sapn my friends agin.']
+	random.shuffle(typos)
+	sentence = 'I will never spam my friends again.'
+	for i in range(iterations):
+		print str(i + 1),
+		if i in typos_index:
+			print typos.pop()
+		else:
+			print sentence
 
-# P-1.35
+# P-1.35 Hard to define
 
 # P-1.36
+def frequency(words):
+	ans = {}
+	for word in words:
+		if word in ans:
+			ans[word] += 1
+		else:
+			ans[word] = 1
