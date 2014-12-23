@@ -67,4 +67,66 @@ def sequence_2():
 def sequence_3():
 	print [2 ** i for i in range(9)]
 
-sequence_3()
+def choice(data):
+	from random import randrange
+	return data[randrange(0, len(data))]
+
+# CREATIVITY
+
+# C-1.13
+def reverse(data):
+	length = len(data)
+	ans = [None for _ in xrange(length)]
+	for i in range(length):
+		ans[i] = data[(length - 1) - i]
+	return ans
+
+print reverse([1,2,3,4])
+
+# C-1.14
+
+# C-1.15
+
+# C-1.16
+
+# C-1.17
+
+# C-1.18
+
+# C-1.19
+
+# C-1.20
+
+# C-1.21
+
+# C-1.22
+
+# C-1.23
+
+# C-1.24
+
+# C-1.25
+
+# C-1.26
+
+# C-1.27
+
+# C-1.28
+
+# PROJECTS
+
+# P-1.29
+
+# P-1.30
+
+# P-1.31
+
+# P-1.32
+
+# P-1.33
+
+# P-1.34
+
+# P-1.35
+
+# P-1.36
