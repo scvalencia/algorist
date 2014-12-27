@@ -46,3 +46,6 @@ class Vector(object):
 				ans += to_add + ', '
 		ans += '>'
 		return ans
+
+	def __repr__(self):
+		return str(self)
