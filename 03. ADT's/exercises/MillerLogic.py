@@ -108,7 +108,8 @@ class AndGate(BinaryGate):
 		if self.pin1 == self.pin2 == 1:
 			return 1
 
-		else: return 0
+		else: 
+			return 0
 
 class OrGate(BinaryGate):
 
@@ -121,4 +122,61 @@ class OrGate(BinaryGate):
 		if self.pin1 == 1 or self.pin2 == 1:
 			return 1
 
-		else: return 0
+		else: 
+			return 0
+
+class NandGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == 1 and self.pin2 == 1:
+			return 0
+
+		else: 
+			return 1
+
+class NorGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == 0 and self.pin2 == 0:
+			return 1
+
+		else: 
+			return 0
+
+class XorGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == 1 or self.pin2 == 1:
+			return 1
+
+		else: 
+			return 0
+
+class XnorGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == 1 or self.pin2 == 1:
+			return 1
+
+		else: 
+			return 0
