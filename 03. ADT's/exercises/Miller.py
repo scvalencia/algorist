@@ -7,6 +7,7 @@ class Fraction(object):
 		if den == 0:
 			raise ValueError("Division by Zero")
 
+		# Pogramming exercises 2
 		self.num = num // common
 		self.den = den // common
 
