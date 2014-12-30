@@ -11,9 +11,18 @@ class Fraction(object):
 		if den == 0:
 			raise ValueError("Division by Zero")
 
-		# Pogramming exercises 2
-		self.num = num // common
-		self.den = den // common
+		# Pogramming exercises 6
+		if num < 0 or den < 0:
+
+			# Pogramming exercises 2
+			self.num = -num // common
+			self.den = den // common
+
+		else:
+
+			# Pogramming exercises 2
+			self.num = num // common
+			self.den = den // common
 
 	# Pogramming exercises 1
 	def get_num(self):
