@@ -329,6 +329,7 @@ def handheld_calculator():
 # P-1.34
 def child_punishment():
 	import random
+	
 	typos_number = 2
 	iterations = 100
 	typos_index = [random.choice(range(100)) for i in range(typos_number)]
