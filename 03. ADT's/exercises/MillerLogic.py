@@ -182,3 +182,68 @@ class XnorGate(BinaryGate):
 
 		else: 
 			self.output = 0
+
+class NotGate(UnaryGate):
+
+	def __init__(self, name):
+
+		UnaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin == 1:
+			self.output = 0
+
+		else:
+			self.output = 1
+
+def basic_circuit1():
+
+	g1 = AndGate("g1")
+	g2 = OrGate("g2")
+	g3 = NotGate("g3")
+
+	g1.set_pin(1)
+	g1.set_pin(0)
+
+	c1 = Connector(g1, g2)
+
+	g2.set_pin(1)
+
+	c2 = Connector(g2, g3)
+	g3.perform_logic()
+
+	print g3.output
+
+def basic_circuit2(a, b, c, d):
+
+	g1 = NotGate("G1")
+	g2 = NotGate("G2")
+	g3 = OrGate("G3")
+
+	g1.set_pin(a)
+	g2.set_pin(a)
+
+	g3.set_pin(c)
+	g3.set_pin(c)
+
+	g4 = AndGate("G4")
+	g5 = AndGate("G5")
+
+	Connector(g2, g4)
+	Connector(g3, g4)
+	Connector(g1, g5)
+	Connector(g4, g5)
+
+	g5.perform_logic()
+	print g5.output
+
+def simulation():
+	bits = 15
+	length = len("{0:b}".format(15))
+
+	i = 0
+	while i <= bits:
+		a, b, c, d = get_binary_string(i, length)
+		basic_circuit2(a, b, c, d)
+		i += 1
