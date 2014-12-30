@@ -238,12 +238,21 @@ def basic_circuit2(a, b, c, d):
 	g5.perform_logic()
 	print g5.output
 
+def get_binary_string(number, length):
+
+	representation = "{0:b}".format(number)
+	new_len = length - len(representation)
+	return ("0" * new_len) + representation
+
+
 def simulation():
 	bits = 15
 	length = len("{0:b}".format(15))
 
 	i = 0
 	while i <= bits:
-		a, b, c, d = get_binary_string(i, length)
+		rep = get_binary_string(i, length)
+		a, b, c, d = int(rep[0]), int(rep[1]), int(rep[2]), int(rep[3])
 		basic_circuit2(a, b, c, d)
 		i += 1
+
