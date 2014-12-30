@@ -161,11 +161,11 @@ class XorGate(BinaryGate):
 
 	def perform_logic(self):
 
-		if self.pin1 == 1 or self.pin2 == 1:
-			return 1
+		if self.pin1 == self.pin2:
+			return 0
 
 		else: 
-			return 0
+			return 1
 
 class XnorGate(BinaryGate):
 
@@ -175,7 +175,7 @@ class XnorGate(BinaryGate):
 
 	def perform_logic(self):
 
-		if self.pin1 == 1 or self.pin2 == 1:
+		if self.pin1 == self.pin2:
 			return 1
 
 		else: 
