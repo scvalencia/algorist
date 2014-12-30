@@ -144,3 +144,11 @@ class Fraction(object):
 	# Pogramming exercises 9
 	def __repr__(self):
 		return str(self)
+
+	def __float__(self):
+		number = (self.num + 0.0) / (self.den)
+		return float(number)
+
+	def __int__(self):
+		number = (self.num + 0.0) / (self.den)
+		return int(number)
