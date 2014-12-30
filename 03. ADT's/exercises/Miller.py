@@ -37,6 +37,12 @@ class Fraction(object):
 		else:
 			return self.gcd(b, a % b)
 
+	def get_common_denominator(self, other):
+		new_self = (self.num * other.den, self.den * other.den)
+		new_other = (other.num * self.den, other.den * self.den)
+
+		return (new_self, new_other)  
+
 	def __add__(self, other):
 		new_num = self.num * other.den + self.den * other.num
 		new_den = self.den * other.den
@@ -64,19 +70,26 @@ class Fraction(object):
 
 	# Pogramming exercises 4
 	def __gt__(self, other):
-		pass
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] > other_tuple[0]
 
 	def __ge__(self, other):
-		pass
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] >= other_tuple[0]
 
 	def __lt__(self, other):
-		pass
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] < other_tuple[0]
 
 	def __le__(self, other):
-		pass
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] <= other_tuple[0]
 
 	def __ne__(self, other):
-		pass
+		num_eq = self.num != other.num
+		den_eq = self.den != other.den
+
+		return num_eq and den_eq		
 
 	def __eq__(self, other):
 		num_eq = self.num == other.num
