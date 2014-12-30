@@ -41,7 +41,10 @@ class Fraction(object):
 		new_self = (self.num * other.den, self.den * other.den)
 		new_other = (other.num * self.den, other.den * self.den)
 
-		return (new_self, new_other)  
+		return (new_self, new_other)
+
+	def mod(self):
+		return self.num % self.den
 
 	def __add__(self, other):
 		new_num = self.num * other.den + self.den * other.num
@@ -84,6 +87,26 @@ class Fraction(object):
 	def __le__(self, other):
 		self_tuple, other_tuple = self.get_common_denominator(other)
 		return self_tuple[0] <= other_tuple[0]
+
+	# Pogramming exercises 7
+	def __radd__(self, other):
+		return self + other
+
+	# Pogramming exercises 8
+	def __iadd__(self, other):
+		new_fraction = self + other
+		self = new_fraction
+		return self
+
+	def __isub__(self, other):
+		new_fraction = self - other
+		self = new_fraction
+		return self
+
+	def __imul__(self, other):
+		new_fraction = self * other
+		self = new_fraction
+		return self
 
 	def __ne__(self, other):
 		num_eq = self.num != other.num
