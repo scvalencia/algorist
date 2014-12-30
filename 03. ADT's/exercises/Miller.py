@@ -4,6 +4,10 @@ class Fraction(object):
 
 		common = self.gcd(num, den)
 
+		# Pogramming exercises 5
+		if type(den) != int or type(den) != int:
+			raise ValueError("Values must be integers")
+
 		if den == 0:
 			raise ValueError("Division by Zero")
 
