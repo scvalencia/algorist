@@ -30,6 +30,15 @@ class Fraction(object):
 
 		return Fraction(new_num, new_den)
 
+	def __sub__(self, other):
+		pass
+
+	def __mul__(self, other):
+		pass
+
+	def __truediv__(self, other):
+		pass
+
 	def __eq__(self, other):
 		num_eq = self.num == other.num
 		den_eq = self.den == other.den
