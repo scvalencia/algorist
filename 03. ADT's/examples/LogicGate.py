@@ -42,7 +42,7 @@ class BinaryGate(LogicGate):
 	def set_next_pin(self, source):
 
 		if self.pin_a == None:
-			self.pin_A = source
+			self.pin_a = source
 
 		else:
 			if self.pin_b == None:
