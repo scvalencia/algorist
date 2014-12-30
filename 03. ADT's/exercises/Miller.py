@@ -30,6 +30,7 @@ class Fraction(object):
 
 		return Fraction(new_num, new_den)
 
+	# Pogramming exercises 3
 	def __sub__(self, other):
 		pass
 
@@ -37,6 +38,22 @@ class Fraction(object):
 		pass
 
 	def __truediv__(self, other):
+		pass
+
+	# Pogramming exercises 4
+	def __gt__(self, other):
+		pass
+
+	def __ge__(self, other):
+		pass
+
+	def __lt__(self, other):
+		pass
+
+	def __le__(self, other):
+		pass
+
+	def __ne__(self, other):
 		pass
 
 	def __eq__(self, other):
