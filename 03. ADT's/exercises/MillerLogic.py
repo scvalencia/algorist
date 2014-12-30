@@ -85,3 +85,42 @@ class UnaryGate(LogicGate):
 	def get_pin(self):
 
 		return self.pin
+
+class Connector(object):
+
+	def __init__(self, fgate, tgate):
+
+		self.fromgate = fgate
+		self.togate = tgate
+
+		out = self.fromgate.get_output()
+
+		tgate.set_pin(out)
+
+class AndGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == self.pin2 == 1:
+			return 1
+
+		else:
+			return 0
+
+class OrGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def perform_logic(self):
+
+		if self.pin1 == 1 or self.pin2 == 1:
+			return 1
+
+		else:
+			return 0
