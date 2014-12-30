@@ -65,3 +65,45 @@ class AndGate(BinaryGate):
 
 		else:
 			return 0
+
+class OrGate(BinaryGate):
+
+	def __init__(self, name):
+
+		BinaryGate.__init__(self, name)
+
+	def performGateLogic(self):
+
+		a = self.get_pinA()
+		b = self.get_pinB()
+
+		if a == 1 or b == 1:
+			return 1
+
+		else:
+			return 0
+
+class NotGate(UnaryGate):
+
+	def __init__(self, name):
+
+		UnaryGate.__init__(self, name)
+
+	def performGateLogic(self):
+
+		pin = self.get_pin()
+
+		if pin == 1:
+			return 0
+
+		else:
+			return 1
+
+class Conector(object):
+
+	def __init__(self, fgate, tgate):
+
+		self.fromgate = fgate
+		self.togate = tgate
+
+		tgate.setNextPin(self)
