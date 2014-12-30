@@ -108,8 +108,7 @@ class AndGate(BinaryGate):
 		if self.pin1 == self.pin2 == 1:
 			return 1
 
-		else:
-			return 0
+		else: return 0
 
 class OrGate(BinaryGate):
 
@@ -122,5 +121,4 @@ class OrGate(BinaryGate):
 		if self.pin1 == 1 or self.pin2 == 1:
 			return 1
 
-		else:
-			return 0
+		else: return 0
