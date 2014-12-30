@@ -15,7 +15,7 @@ class Fraction(object):
 		if num < 0 or den < 0:
 
 			# Pogramming exercises 2
-			self.num = -num // common
+			self.num = (num // -common)
 			self.den = den // common
 
 		else:
@@ -96,16 +96,25 @@ class Fraction(object):
 	def __iadd__(self, other):
 		new_fraction = self + other
 		self = new_fraction
+
 		return self
 
 	def __isub__(self, other):
 		new_fraction = self - other
 		self = new_fraction
+
 		return self
 
 	def __imul__(self, other):
 		new_fraction = self * other
 		self = new_fraction
+
+		return self
+
+	def __idiv__(self, other):
+		new_fraction = self / other
+		self = new_fraction
+
 		return self
 
 	def __ne__(self, other):
@@ -119,6 +128,12 @@ class Fraction(object):
 		den_eq = self.den == other.den
 
 		return num_eq and den_eq
+
+	def __abs__(self):
+		new_num = abs(self.num)
+		new_den = abs(self.den)
+
+		return Fraction(new_num, new_den)
 
 	def __str__(self):
 		if self.den == 1:
