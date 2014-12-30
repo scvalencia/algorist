@@ -1,6 +1,6 @@
 class Fraction(object):
 
-	def __init__(self, num, den):
+	def __init__(self, num, den = 1):
 
 		common = self.gcd(num, den)
 
@@ -45,13 +45,22 @@ class Fraction(object):
 
 	# Pogramming exercises 3
 	def __sub__(self, other):
-		pass
+		new_num = self.num * other.den - self.den * other.num
+		new_den = self.den * other.den
+
+		return Fraction(new_num, new_den)
 
 	def __mul__(self, other):
-		pass
+		new_num = self.num * other.num
+		new_den = self.den * other.den
 
-	def __truediv__(self, other):
-		pass
+		return Fraction(new_num, new_den)
+
+	def __div__(self, other):
+		new_num = self.num * other.den
+		new_den = self.den * other.num
+
+		return Fraction(new_num, new_den)
 
 	# Pogramming exercises 4
 	def __gt__(self, other):
