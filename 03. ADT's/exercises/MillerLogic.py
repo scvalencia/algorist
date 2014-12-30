@@ -54,11 +54,11 @@ class BinaryGate(LogicGate):
 			raise ValueError("Pin value must be 0, or 1")
 
 		else:
-			if self.pin1 != None:
+			if self.pin1 == None:
 				self.set_pin1(value)
 
 			else:
-				if self.pin2 != None:
+				if self.pin2 == None:
 					self.set_pin2(value)
 				else:
 					raise RuntimeError("No empty pins in the gate " + self.label)
@@ -77,7 +77,7 @@ class UnaryGate(LogicGate):
 			raise ValueError("Pin value must be 0, or 1")
 
 		else:
-			if self.pin != None:
+			if self.pin == None:
 				self.pin = value
 			else:
 				raise RuntimeError("No empty pins in the gate " + self.label)
@@ -93,7 +93,9 @@ class Connector(object):
 		self.fromgate = fgate
 		self.togate = tgate
 
-		out = self.fromgate.get_output()
+		self.fromgate.perform_logic()
+
+		out = self.fromgate.output
 
 		tgate.set_pin(out)
 
@@ -106,10 +108,10 @@ class AndGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == self.pin2 == 1:
-			return 1
+			self.output = 1
 
 		else: 
-			return 0
+			self.output = 0
 
 class OrGate(BinaryGate):
 
@@ -120,10 +122,10 @@ class OrGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == 1 or self.pin2 == 1:
-			return 1
+			self.output = 1
 
 		else: 
-			return 0
+			self.output = 0
 
 class NandGate(BinaryGate):
 
@@ -134,10 +136,10 @@ class NandGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == 1 and self.pin2 == 1:
-			return 0
+			self.output = 0
 
 		else: 
-			return 1
+			self.output = 1
 
 class NorGate(BinaryGate):
 
@@ -148,10 +150,10 @@ class NorGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == 0 and self.pin2 == 0:
-			return 1
+			self.output = 1
 
 		else: 
-			return 0
+			self.output = 0
 
 class XorGate(BinaryGate):
 
@@ -162,10 +164,10 @@ class XorGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == self.pin2:
-			return 0
+			self.output = 0
 
 		else: 
-			return 1
+			self.output = 1
 
 class XnorGate(BinaryGate):
 
@@ -176,7 +178,7 @@ class XnorGate(BinaryGate):
 	def perform_logic(self):
 
 		if self.pin1 == self.pin2:
-			return 1
+			self.output = 1
 
 		else: 
-			return 0
+			self.output = 0
