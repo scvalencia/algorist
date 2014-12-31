@@ -236,7 +236,7 @@ def basic_circuit2(a, b, c, d):
 	Connector(g4, g5)
 
 	g5.perform_logic()
-	print g5.output
+	return g5.output
 
 def get_binary_string(number, length):
 
