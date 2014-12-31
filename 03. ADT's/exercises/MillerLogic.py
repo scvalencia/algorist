@@ -127,6 +127,7 @@ class OrGate(BinaryGate):
 		else: 
 			self.output = 0
 
+# Pogramming exercises 10
 class NandGate(BinaryGate):
 
 	def __init__(self, name):
@@ -141,6 +142,7 @@ class NandGate(BinaryGate):
 		else: 
 			self.output = 1
 
+# Pogramming exercises 10
 class NorGate(BinaryGate):
 
 	def __init__(self, name):
@@ -155,6 +157,7 @@ class NorGate(BinaryGate):
 		else: 
 			self.output = 0
 
+# Pogramming exercises 10
 class XorGate(BinaryGate):
 
 	def __init__(self, name):
@@ -196,6 +199,21 @@ class NotGate(UnaryGate):
 
 		else:
 			self.output = 1
+
+class HalfAdder():
+
+	def __init__(self, name):
+
+		self.pin1 = None
+		self.pin2 = None
+		self.c = None
+
+	def perform_logic(self):
+
+		g1 = AndGate("G1")
+		pass
+
+		# See Lola at github/scvalencia
 
 def basic_circuit1():
 
@@ -253,6 +271,8 @@ def simulation():
 	while i <= bits:
 		rep = get_binary_string(i, length)
 		a, b, c, d = int(rep[0]), int(rep[1]), int(rep[2]), int(rep[3])
-		basic_circuit2(a, b, c, d)
+		print basic_circuit2(a, b, c, d)
 		i += 1
+
+simulation()
 
