@@ -1,9 +1,9 @@
 Downey 
 Goodrich 12
-Guttag 
+Guttag 10
 Hetland 
 Lambert 
 Miller 5
-Necaise 12
-Wahl 
+Necaise 5, 12
+Wahl 8, 9
 Zelle
