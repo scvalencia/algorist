@@ -1,9 +1,0 @@
-Downey 
-Goodrich 2, 5
-Guttag 
-Hetland 
-Lambert 12
-Miller 1, 3
-Necaise 1, 2, 3
-Wahl 6
-Zelle 2, 3
