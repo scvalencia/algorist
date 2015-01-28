@@ -9,7 +9,7 @@ A collection of algorithms and data structures implemented in the python program
 
 [2] Goodrich, Tamassia, Goldwasser - [Data strctures and algorithms](http://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275/ref=sr_1_3?s=books&ie=UTF8&qid=1419191087&sr=1-3).
 
-[3] Guttag - [Introduction to computation and programming using Python](http://www.amazon.com/Introduction-Computation-Programming-Using-Python/dp/0262525003/ref=sr_1_1?s=books&ie=UTF8&qid=1419191126&sr=1-1&keywords=Introduction+to+computation+and+programming+using+Python).
+[3] Guttag - [Introduction to computation and programming using Python.](http://www.amazon.com/Introduction-Computation-Programming-Using-Python/dp/0262525003/ref=sr_1_1?s=books&ie=UTF8&qid=1419191126&sr=1-1&keywords=Introduction+to+computation+and+programming+using+Python).
 
 [4] Hetland - [Python algorithms](http://www.amazon.com/Python-Algorithms-Mastering-Language-Experts/dp/1430232374).
 
