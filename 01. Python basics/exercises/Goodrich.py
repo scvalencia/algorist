@@ -1,6 +1,8 @@
 # Code for the exercises in Goodrich, Tamassia, Goldwasser's 
 # book on data structures and algorithms in Python
 
+# CHAPTER 1
+
 
 # REINFORCEMENT
 
