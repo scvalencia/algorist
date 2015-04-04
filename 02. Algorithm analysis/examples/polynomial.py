@@ -1,7 +1,6 @@
 import math
 
-
-
+# O(n^2)
 def compute1(p, x):
 	ans = 0.0
 
@@ -15,6 +14,7 @@ def compute1(p, x):
 
 	return ans
 
+# O(log(n))
 def power(x, n):
 	if n == 0: 
 		return 1
@@ -24,7 +24,7 @@ def power(x, n):
 	else:
 		return x * power(x, n - 1)
 
-
+# O(n * log(n))
 def compute2(p, x):
 
 	ans = 0.0
@@ -34,9 +34,10 @@ def compute2(p, x):
 
 	return ans
 
+# O(n)
 def horner(p, x):
 	'''
-		Given p(x) = a + bx + cx**2 + dx**3
+		Given p(x) = a + bx + c^2 + dx^3
 		p(x) = a + x(b + x(c + dx))
 
 		t1 = d
