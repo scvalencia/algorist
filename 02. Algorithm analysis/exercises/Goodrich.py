@@ -1,6 +1,8 @@
 # Code for the exercises in Goodrich, Tamassia, Goldwasser's 
 # book on data structures and algorithms in Python
 
+import math
+
 # CHAPTER 3
 
 
@@ -9,10 +11,13 @@
 # C-3.35
 def merge_sort(alist):
 	# Adapted form: http://interactivepython.org/
-    if len(alist) > 1:
-        mid = len(alist) // 2
+	'''
+		T(n) ~ 2T(n/2) + n ~ O(nlog(n))
+	'''
+	if len(alist) > 1:
+		mid = len(alist) // 2
 
-        lefthalf = alist[:mid]
+       	lefthalf = alist[:mid]
         righthalf = alist[mid:]
 
         merge_sort(lefthalf)
@@ -40,7 +45,9 @@ def merge_sort(alist):
             k = k + 1
 
 def binary_search(collection, target):
-
+	'''
+		T(n) ~ T(n/2) + 1 ~ O(log(n))
+	'''
 	low, high = 0, len(collection) - 1
 
 	while low <= high:
@@ -74,3 +81,60 @@ def disjoint3(A, B, C):
 	return True
 
 # C-3.36
+def kmax_element(A, k = 10):
+	'''
+		T(n) ~ nlog(n) + 1 ~ nlog(n)
+	''' 
+	if len(A) < 10:
+		return
+	else:
+		merge_sort(A)
+		print A
+		i = len(A)
+		return A[i - 10]
+
+# C-3.38
+'''
+	sum(1, n, i^2) = n(n + 1)(n + 2) / 6 ~ O(n^3)
+'''
+
+# C-3.41
+def min_max(A, low, high):
+	'''
+		Using Divide, conquer and combine
+		Call it as (A, 0, len(A) - 1):
+		T(n) ~ n = 2 ? 3 : 2T(n/2) + 2 
+
+		T(n) = 2T(n/2) + 2
+			 = 2(2T(n/2^2) + 2) + 2
+			 = 2(2(2T(n/2^3) + 2) + 2) + 2
+			 = 2(2^2T(n/2^3) + 2^2 + 2) + 2
+			 = 2^3T(n/2^3) + 2^3 + 2^2 + 2
+			 .
+			 .
+			 .
+			?= 2^(k - 1)T(n/2^(k - 1)) + sum(i = 1, k - 1, 2^i)
+			Should be tested using PMI
+			Let n = 2^k => k = log2(n) = log(n)
+
+		T(n) = 2^(log(n) - 1)T(2) + 2^(log(n)) - 2 By geometric series
+		     = (2^(logn) / 2) + n - 2 
+		     = (n / 2) + n - 2
+		     = 3n/2 - 2
+
+		     < 3n/2
+
+		Q.E.D
+
+	'''
+
+	if high - low == 1:
+		return (min(A[low], A[high]), max(A[low], A[high]))
+
+	mid = int(math.floor((low + high) / 2))
+	x1, y1 = min_max(A, low, mid)
+	x2, y2 = min_max(A, mid + 1, high)
+
+	minimum, maximum = min(x1, x2), max(y1, y2)
+
+	return (minimum, maximum)
