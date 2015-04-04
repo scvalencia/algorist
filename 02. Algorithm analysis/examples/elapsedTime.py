@@ -29,7 +29,7 @@ def binary_search(collection, target):
 
 def main():
 
-	sizes = [i for i in range(0, 110000, 1000)]
+	sizes = [i for i in range(0, 11000, 1000)]
 	lists = [[int(1000 * random()) for i in xrange(size)] for size in sizes if size != 0]
 	results = {}
 	
