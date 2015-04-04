@@ -2,6 +2,8 @@
 # book on data structures and algorithms in Python
 
 import math
+import itertools
+import collections
 
 # CHAPTER 3
 
@@ -215,3 +217,75 @@ def horner(p, x):
 
 	return t1
 
+# C-3.53
+'''
+	One should devise an assignation heuristic to ensure
+	that all testers share a bottle, there's one bottle 
+	that is not tested, and ensure combinations as follows:
+
+	Suppose n = 8.
+
+	Testers = [A, B, C]
+
+	A: 2 5 6 7
+	B: 3 5 6 8
+	C: 4 6 7 8
+
+	1 : [] 			-> nCr(4, 0)
+	2 : [A] 		-> nCr(4, 1)
+	3 : [B]
+	4 : [C]
+	5 : [A, B] 		-> nCr(4, 2)
+	6 : [A, C]
+	7 : [B, C]
+	8 : [A, B, C] 	-> nCr(4, 3)
+
+	If no tester dies, the poisoned bottle was 1.
+	If just A dies, 2 was poisoned, if just B dies,
+	3 was poisoned, if just C dies, then 4 was poisoned.
+	If just A and B dies, 5 was poisoned.
+	If just A and C dies, 6 was poisoned.
+	If just B and C dies, 7 was poisoned.
+
+	If all of them died, 8 was the poisoned bottle.
+
+	The strategy is to generate the testing table,
+	that is assign to each tester some bottles, and
+	follow the heuristic.
+
+	If there are 8 bottles, we need 3 tester, log2(8) = 3
+
+
+'''
+
+def generate_sentence(bottle, testers):
+	ans = 'If ' + ', '.join(map(str, testers))
+	ans += ' is ' if len(testers) == 1 else ' are '
+	ans += 'dead, bottle #' + str(bottle) + ' was poisoned'
+	return ans
+
+
+# http://stackoverflow.com/questions/17434070/generating-all-combinations-of-a-list-in-python
+def wine_testing(n):
+	table = {i: [] for i in range(1, n + 1)}
+	testers_size = int(math.log(n, 2))
+	testers = [i for i in range(1, testers_size + 1)]
+
+	permutations = []
+
+	for i in xrange(testers_size + 1):
+		for j in list(itertools.combinations(testers, i)):
+			permutations.append(list(j))
+
+	i = 0
+	while i < n:
+		table[i + 1] = permutations[i]
+		i += 1
+
+	print
+
+	for i in range(1, n + 1):
+		print i, ' : ', table[i]
+
+
+# wine_testing(16)
