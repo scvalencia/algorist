@@ -138,3 +138,24 @@ def min_max(A, low, high):
 	minimum, maximum = min(x1, x2), max(y1, y2)
 
 	return (minimum, maximum)
+
+# C-3.42
+def count_total_visits(n):
+	ans = 0
+	for i in range(n + 1):
+		ans += i * (i + 1) / 2
+
+	return ans + 1
+
+# C-3.45
+def lacking_number(lst, n):
+	summation = n * (n - 1) / 2
+	accum = 0
+
+	for itm in lst:
+		accum += itm
+
+	return summation - accum
+
+# C-3.50
+
