@@ -266,6 +266,8 @@ def generate_sentence(bottle, testers):
 
 
 # http://stackoverflow.com/questions/17434070/generating-all-combinations-of-a-list-in-python
+# https://docs.python.org/2/library/itertools.html
+# http://www.jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/
 def wine_testing(n):
 	table = {i: [] for i in range(1, n + 1)}
 	testers_size = int(math.log(n, 2))
