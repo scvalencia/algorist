@@ -95,3 +95,24 @@ class Vector(object):
 
 	def __repr__(self):
 		return str(self)
+
+class SequenceIterator(object):
+	'''
+		An iterator for any sequence supporting both __len__, and
+		__getitem__
+	'''
+
+	def __init__(self, sequence):
+		self.__seq = sequence
+		self.__k = -1
+
+	def __next__(self):
+		self.__k += 1
+		if self.__k < len(self.__seq):
+			return self.__seq[self.__k]
+		else:
+			raise StopIteration()
+
+	def __iter__(self):
+		return self 
+
