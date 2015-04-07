@@ -37,7 +37,7 @@ class Progression(object):
 		print ' '.join(str(self.__next__()) for j in range(n))
 
 class ArithmeticProgression(Progression):
-	''' Iterator producing an arithmetic progression. '''
+	''' Iterator producing an arithmetic progression.'''
 
 	def __init__(self, step = 1, start = 0):
 		''' Create a new arithmetic progression.
@@ -70,4 +70,10 @@ class GeometricProgression(Progression):
 	def advance(self):
 		''' Updates current value by multiplying if by the base value.'''
 		self.current *= self.base
+
+class FibonacciProgression(Progression):
+
+	def __init__(self, first = 0, second = 1):
+
+
 
