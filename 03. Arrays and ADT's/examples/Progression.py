@@ -54,7 +54,7 @@ class ArithmeticProgression(Progression):
 		self.current += self.step
 
 class GeometricProgression(Progression):
-	''' Iterator producing a geometric progression. '''
+	''' Iterator producing a geometric progression.'''
 
 	def __init__(self, base = 2, start = 1):
 		''' Create a new geometric progression.
