@@ -88,6 +88,34 @@ class FibonacciProgression(Progression):
 		''' Update current value by taking the sum of the previous two.'''
 		self.prev, self.current = self.current, self.prev + self.current
 
+class TriangularProgression(Progression):
+	''' Iterator producing the Triangular Number sequence. '''
+
+	def __init__(self):
+
+		Progression.__init__(self, 0)
+		self.term = 1
+
+	def advance(self):
+		self.current = self.current + self.term
+		self.term += 1
+
+class SquareProgression(Progression):
+	''' Iterator producing the Triangular Number sequence. '''
+
+	def __init__(self):
+
+		Progression.__init__(self, 0)
+		self.term = 1
+
+	def advance(self):
+		self.current = self.term * self.term
+		self.term += 1
+	
+
+class PrimeProgression(Progression):
+	pass
+
 
 
 
