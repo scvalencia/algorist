@@ -109,12 +109,13 @@ class SquareProgression(Progression):
 		self.term = 1
 
 	def advance(self):
+		''' Update current value by taking the square of the current term. '''
 		self.current = self.term * self.term
 		self.term += 1
 	
 
 class PrimeProgression(Progression):
-	pass
+	
 
 
 
