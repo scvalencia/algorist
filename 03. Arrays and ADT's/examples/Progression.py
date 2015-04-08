@@ -68,12 +68,26 @@ class GeometricProgression(Progression):
 		self.base = base
 
 	def advance(self):
-		''' Updates current value by multiplying if by the base value.'''
+		''' Update current value by multiplying if by the base value.'''
 		self.current *= self.base
 
 class FibonacciProgression(Progression):
+	''' Iterator producing a generalized Fibonacci progression.'''
 
 	def __init__(self, first = 0, second = 1):
+		''' Create a new fibonacci progression.
+
+		first 	the first term of the progression
+		second  the  second term of the progression
+		'''
+
+		Progression.__init__(self, first)
+		self.prev = second - first
+
+	def advance(self):
+		''' Update current value by taking the sum of the previous two.'''
+		self.prev, self.current = self.current, self.prev + self.current
+
 
 
 
