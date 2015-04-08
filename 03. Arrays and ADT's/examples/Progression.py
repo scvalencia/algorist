@@ -115,6 +115,35 @@ class SquareProgression(Progression):
 	
 
 class PrimeProgression(Progression):
+	''' Iterator producing a sequence of prime numbers. '''
+
+	def __init__(self):
+
+		Progression.__init__(self, 2)
+
+	def is_prime(self, n):
+		if n <= 1: return False
+		elif n <= 3: return True
+		elif n % 2 == 0 or n % 3 == 0:
+			return False
+
+		i =  5
+		while i * i <= n:
+			if n % i == 0 or n % (i + 2) == 0:
+				return False
+			i = i + 6
+
+		return True
+
+	def next_prime(self, n):
+		i = n + 1
+		while not self.is_prime(i):
+			i += 1
+
+		return i
+
+	def advance(self):
+		self.current = self.next_prime(self.current)
 	
 
 
