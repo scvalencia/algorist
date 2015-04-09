@@ -170,13 +170,3 @@ class AbundantProgression(Progression):
 
 	def advance(self):
 		self.current = self.next_number(self.current)
-
-
-
-
-
-	
-
-
-
-
