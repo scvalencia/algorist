@@ -144,6 +144,37 @@ class PrimeProgression(Progression):
 
 	def advance(self):
 		self.current = self.next_prime(self.current)
+
+class AbundantProgression(Progression):
+	''' Iterator producing a sequence of abundant numbers. '''
+
+	def __init__(self):
+
+		Progression.__init__(self, 12)
+
+	def divisors_sum(self, number):
+		i, ans = 1, 0
+		while i < number:
+			if number % i == 0:
+				ans += i
+			i += 1
+
+		return ans
+
+	def next_number(self, n):
+		i = n + 1
+		while i >= self.divisors_sum(i):
+			i += 1
+
+		return i
+
+	def advance(self):
+		self.current = self.next_number(self.current)
+
+
+
+
+
 	
 
 
