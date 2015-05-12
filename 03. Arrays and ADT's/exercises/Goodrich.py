@@ -439,6 +439,8 @@ def frequencies(text):
 
 # P-2.35
 
+# Consumers, producers
+
 class Person(object):
 
 	def __init__(self, name):
@@ -480,6 +482,7 @@ def simulate():
 		i += 1
 
 # P-2.36
+
 
 def simulation1(size):
 
@@ -543,6 +546,7 @@ def simulation1(size):
 
 
 # P-2.37
+
 
 def simulation2(size):
 
@@ -624,7 +628,7 @@ def simulation2(size):
 class Book(object):
 
 	''' A simple book '''
-	
+
 	def __init__(self, title, author, link, price, book_id):
 		self.id = book_id
 		self.title = title
