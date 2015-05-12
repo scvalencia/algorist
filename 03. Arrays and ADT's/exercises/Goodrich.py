@@ -623,6 +623,8 @@ def simulation2(size):
 
 class Book(object):
 
+	''' A simple book '''
+	
 	def __init__(self, title, author, link, price, book_id):
 		self.id = book_id
 		self.title = title
