@@ -820,6 +820,9 @@ def P2_30():
 
 # P-2.39
 
+class Polygon(object):
+	pass
+
 def main():
 	P2_30()
 
