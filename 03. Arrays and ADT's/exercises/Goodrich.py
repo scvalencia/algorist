@@ -204,6 +204,7 @@ def parse_polynomial(polynomial, variable = 'x'):
 
 	return ans
 
+# Tokens of a polynomail
 def tokenize_polynomial(tokens):
 	degree = -1
 	dct = {}
