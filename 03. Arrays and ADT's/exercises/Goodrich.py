@@ -223,6 +223,7 @@ def tokenize_polynomial(tokens):
 
 	return polynomial
 
+# Parsing language
 def main():
 	env = {}
 
