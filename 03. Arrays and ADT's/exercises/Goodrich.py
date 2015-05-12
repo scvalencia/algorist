@@ -773,6 +773,7 @@ def handler():
 	output = open('data.pkl', 'wb')
 	e.add_money(800)
 
+	# A Menu for the e-book
 	while True:
 
 		print '= ' * 30
