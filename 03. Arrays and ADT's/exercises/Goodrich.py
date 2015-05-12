@@ -67,6 +67,7 @@ class Polynomial(object):
 
 		ans = Polynomial(ans_coeffs)
 		return ans
+		
 
 	def __sub__(self, other):
 		max_deg = other.degree if other.degree > self.degree else self.degree
