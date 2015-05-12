@@ -659,6 +659,7 @@ class Book(object):
 		return ans
 
 class EbookReader(object):
+	''' Basic ebook reader '''
 
 	def __init__(self):
 		self.books = []
