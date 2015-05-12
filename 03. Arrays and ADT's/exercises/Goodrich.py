@@ -108,6 +108,7 @@ class Polynomial(object):
 		pass
 
 	def eval(self, point):
+		''' Evaluation using the Horner rule '''
 		i = self.degree - 1
 		t1 = self.coeffs[i]
 
