@@ -159,6 +159,7 @@ class Polynomial(object):
 		lst = [0 for _ in range(size  -self.degree)]
 		return self.coeffs + lst
 
+# Parsing a simple polynomial
 def parse_polynomial(polynomial, variable = 'x'):
 	parse = re.compile("[+|-]").split(polynomial)
 	for i, itm in enumerate(parse):
