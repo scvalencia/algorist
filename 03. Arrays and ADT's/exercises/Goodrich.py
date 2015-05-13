@@ -7,6 +7,7 @@ import random
 import urllib2
 from xml.dom import minidom
 from bs4 import BeautifulSoup
+from abc import ABCMeta, abstractmethod
 
 # CHAPTER 2
 
@@ -827,17 +828,33 @@ def handler():
 	pickle.dump(e, output)
 	output.close()
 
-def P2_30():
+def P2_38():
 	handler()
 
 
 # P-2.39
 
-class Polygon(object):
+class Polygon(metaclass = ABCMeta):
+
+	@abstractmethod
+	def area():
+		pass
+
+	@abstractmethod
+	def polygon():
+		pass
+
+class Triangle(Polygon):
+
+	def __init__(self, vertices):
+		pass
+
+def P2_39():
 	pass
 
+
 def main():
-	P2_30()
+	P2_38()
 
 if __name__ == '__main__':
 	main()
