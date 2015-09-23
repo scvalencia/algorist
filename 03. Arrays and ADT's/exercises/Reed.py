@@ -201,7 +201,7 @@ def blackjack():
 def p2_4():
 	blackjack()
 
-# P-2.5
+# P-2.5, i don't know how  to play Solitaire
 
 # P-2.6
 
