@@ -205,7 +205,7 @@ def p2_4():
 
 # P-2.6, i don't know how  to play Solitaire
 
-# P-2.7, TODO
+# P-2.7
 
 class Dataset(object):
 
