@@ -435,7 +435,6 @@ def find_great_smallest_unit_fraction(fraction):
 
 	return maximum
 
-
 def egyptian_fraction():
 	num = input('Numerator: ')
 	den = input('Denominator: ')
