@@ -277,51 +277,188 @@ class Dataset(object):
 
 # P-2.10
 
-def gcd(m, n):
+class Fraction(object):
 
-	while m % n != 0:
-		oldm = m
-		oldn = n
+	def __init__(self, num, den = 1):
 
-		m = oldn
-		n = oldm % oldn
+		common = self.gcd(num, den)
 
-	return n
+		if type(den) != int or type(den) != int:
+			raise ValueError("Values must be integers")
 
-class Rational(object):	
+		if den == 0:
+			raise ValueError("Division by Zero")
 
-	def __init__(self, top, bottom):
+		if num < 0 or den < 0:
+			self.num = (num // -common)
+			self.den = den // common
 
-		self.num = top
-		self.den = bottom
+		else:
+			self.num = num // common
+			self.den = den // common
+
+	def get_num(self):
+		return self.num
+
+	def get_den(self):
+		return self.den
+
+	def gcd(self, a, b):
+		if b == 0: 
+			return a
+		else:
+			return self.gcd(b, a % b)
+
+	def get_common_denominator(self, other):
+		new_self = (self.num * other.den, self.den * other.den)
+		new_other = (other.num * self.den, other.den * self.den)
+
+		return (new_self, new_other)
+
+	def mod(self):
+		return self.num % self.den
+
+	def is_unit(self):
+		return self.num == 1
 
 	def __add__(self, other):
-
 		new_num = self.num * other.den + self.den * other.num
 		new_den = self.den * other.den
-		common = gcd(new_num, new_den)
 
-		return Fraction(new_num // common, new_den // common)
+		return Fraction(new_num, new_den)
+
+	def __sub__(self, other):
+		new_num = self.num * other.den - self.den * other.num
+		new_den = self.den * other.den
+
+		return Fraction(new_num, new_den)
+
+	def __mul__(self, other):
+		new_num = self.num * other.num
+		new_den = self.den * other.den
+
+		return Fraction(new_num, new_den)
+
+	def __div__(self, other):
+		new_num = self.num * other.den
+		new_den = self.den * other.num
+
+		return Fraction(new_num, new_den)
+
+	def __gt__(self, other):
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] > other_tuple[0]
+
+	def __ge__(self, other):
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] >= other_tuple[0]
+
+	def __lt__(self, other):
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] < other_tuple[0]
+
+	def __le__(self, other):
+		self_tuple, other_tuple = self.get_common_denominator(other)
+		return self_tuple[0] <= other_tuple[0]
+
+	def __radd__(self, other):
+		return self + other
+
+	def __iadd__(self, other):
+		new_fraction = self + other
+		self = new_fraction
+
+		return self
+
+	def __isub__(self, other):
+		new_fraction = self - other
+		self = new_fraction
+
+		return self
+
+	def __imul__(self, other):
+		new_fraction = self * other
+		self = new_fraction
+
+		return self
+
+	def __idiv__(self, other):
+		new_fraction = self / other
+		self = new_fraction
+
+		return self
+
+	def __ne__(self, other):
+		num_eq = self.num != other.num
+		den_eq = self.den != other.den
+
+		return num_eq and den_eq		
 
 	def __eq__(self, other):
+		num_eq = self.num == other.num
+		den_eq = self.den == other.den
 
-		firstnum = self.num * other.den
-		secondnum = other.num * self.den
+		return num_eq and den_eq
 
-		return firstnum == secondnum
+	def __abs__(self):
+		new_num = abs(self.num)
+		new_den = abs(self.den)
+
+		return Fraction(new_num, new_den)
 
 	def __str__(self):
-		return str(self.num) + "/" + str(self.den)
+		if self.den == 1:
+			return str(self.num)
+		else:
+			return str(self.num) + "/" + str(self.den)
 
 	def __repr__(self):
 		return str(self)
 
+	def __float__(self):
+		number = (self.num + 0.0) / (self.den)
+		return float(number)
+
+	def __int__(self):
+		number = (self.num + 0.0) / (self.den)
+		return int(number)
+
 # P-2.11
+
+def find_great_smallest_unit_fraction(fraction):
+	lst = [Fraction(1, i) for i in range(2, fraction.den + 1)]
+	maximum = Fraction(1, fraction.den)
+
+	for frc in lst:
+		if frc < fraction and frc > maximum:
+			maximum = frc
+
+	return maximum
+
+
+def egyptian_fraction():
+	num = input('Numerator: ')
+	den = input('Denominator: ')
+
+	ans = []
+
+	fraction = Fraction(num, den)
+	while not fraction.is_unit():
+		sub = find_great_smallest_unit_fraction(fraction)
+		fraction = fraction - sub
+		ans.append(sub)
+
+	ans.append(fraction)
+
+	print Fraction(num, den), '=', ans[0],
+
+	for frc in ans[1:]:
+		print '+', frc,
 
 # P-2.12
 
 def main():
-	p2_4()
+	egyptian_fraction()
 
 if __name__ == '__main__':
 	main()
