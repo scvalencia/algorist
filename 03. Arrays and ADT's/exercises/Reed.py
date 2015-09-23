@@ -456,6 +456,149 @@ def egyptian_fraction():
 
 # P-2.12
 
+class Polynomial(object):
+	''' A class representing a polynomial in the form ax^n + ... + d '''
+
+	def __init__(self, coeffs, variable = 'x'):
+		self.degree = len(coeffs)
+		self.coeffs = coeffs
+		self.variable = variable
+
+	def __repr__(self):
+
+		def repr_power(variable, power):
+			if power == 0:
+				return ''
+			elif power == 1:
+				return variable
+			else:
+				return variable + '^' + str(power)
+		
+		ans = ''
+		i = self.degree - 1
+		for itm in reversed(self.coeffs):
+			if itm != 0:
+				ans += '+' if itm > 0 else ''
+				ans += str(itm) + repr_power(self.variable, i)
+			i -= 1
+
+		return ans
+
+	def __str__(self):
+		return self.__repr__()
+
+	def __add__(self, other):
+		max_polynomial = other if other.degree > self.degree else self
+		min_polynomial = other if other.degree < self.degree else self
+
+		old_degree = min_polynomial.coeffs
+		new_padding = min_polynomial.padding(max_polynomial.degree)
+
+		ans = None
+
+		ans_coeffs = []
+
+		i = 0
+		while i < max_polynomial.degree:
+			a = max_polynomial.coeffs[i]
+			b = new_padding[i]
+			ans_coeffs.append(a + b)
+			i += 1
+
+		ans = Polynomial(ans_coeffs)
+		return ans
+		
+
+	def __sub__(self, other):
+		max_deg = other.degree if other.degree > self.degree else self.degree
+		
+		ans = None
+
+		a_coeffs = self.padding(max_deg)
+		b_coeffs = other.padding(max_deg)
+
+		ans_coeffs = []
+
+		i = 0
+		while i < max_deg:
+			a = a_coeffs[i]
+			b = b_coeffs[i]
+			ans_coeffs.append(a - b)
+			i += 1
+
+		ans = Polynomial(ans_coeffs)
+		return ans
+
+	def __mul__(self, other):
+		
+		new_deg = self.degree + other.degree
+		new_coeffs = [0 for _ in range(new_deg - 1)]
+
+		max_polynomial = other if other.degree > self.degree else self
+		min_polynomial = other if other.degree < self.degree else self
+
+		for i, itm1 in enumerate(max_polynomial.coeffs):
+			for j, itm2 in enumerate(min_polynomial.coeffs):
+				deg = i + j
+				new_coeffs[deg] += itm1 * itm2
+
+		ans = Polynomial(new_coeffs)
+		return ans
+
+	def __div__(self, other):
+		pass
+
+	def eval(self, point):
+		i = self.degree - 1
+		t1 = self.coeffs[i]
+
+		while i > 0:
+			t1 = t1 * point + self.coeffs[i - 1]
+			i -= 1
+
+		return t1
+
+	def derivate(self, point = None):
+
+		ans = None
+		new_coeffs = [0 for _ in range(self.degree - 1)]
+
+		i = 0
+		for itm in self.coeffs[1:]:
+			new_coeffs[i] = (i + 1) * itm
+			i += 1
+
+		ans = Polynomial(new_coeffs)
+		
+		if point:
+			result = ans.eval(point)
+			ans = Polynomial([result])
+
+		return ans
+
+	def integrate(self, lower_bound = None, upper_bound = None):
+		
+		ans = None
+		new_coeffs = [0 for _ in range(self.degree + 1)]
+
+		i = 0
+		for itm in self.coeffs:
+			new_coeffs[i + 1] = itm / (i + 1.0)
+			i += 1
+
+		ans = Polynomial(new_coeffs)
+		
+		if lower_bound and upper_bound:
+			a = ans.eval(upper_bound)
+			b = ans.eval(lower_bound)
+			ans = Polynomial([a - b])
+
+		return ans
+
+	def padding(self, size):
+		lst = [0 for _ in range(size  -self.degree)]
+		return self.coeffs + lst
+
 def main():
 	egyptian_fraction()
 
