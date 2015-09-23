@@ -203,7 +203,7 @@ def p2_4():
 
 # P-2.5, i don't know how  to play Solitaire
 
-# P-2.6
+# P-2.6, i don't know how  to play Solitaire
 
 # P-2.7
 
