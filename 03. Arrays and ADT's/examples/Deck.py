@@ -71,3 +71,26 @@ class Deck(object):
 		post: returns the next card in the deck, and removes it from the deck
 		'''
 		return self.cards.pop()
+
+class Hand(object):
+
+	'''A labeled collection of cards that can be sorted'''
+
+	def __init__(self, label=""):
+		'''Creates an empty collection with the given label'''
+
+	def add(self, card):
+		'''Add a card to the hand
+		ctx: s <- |cards|
+		pre: s <- |cards| /\ !(card in cards)
+		post: |cards| = s + 1 /\ card min cards
+		'''
+
+	def sort(self):
+		'''Arranges the cards in descending bridge order
+		ctx: s <- |cards|
+		post: forall i in [0, s - 1] ==> cards[i] <_{bridge} cards[i + 1]
+		'''
+
+	def dump(self):
+		'''Print the content of the hand'''
