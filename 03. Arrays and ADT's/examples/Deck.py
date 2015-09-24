@@ -29,6 +29,22 @@ class Card(object):
 	def __str__(self):
 		return self.rank_name() + ' of ' + self.suit_name()
 
+	def __eq__(self, other):
+		return (self.suit_char == other.suit_char and 
+			self.rank_num == other.rank_num)
+
+	def __lt__(self, other):
+		if self.suit_char == other.suit_char:
+			return self.rank_num < other.rank_num
+		else:
+			return self.suit_char < other.suit_char
+
+	def __ne__(self, other):
+		return not(self == other)
+
+	def __le__(self, other):
+		return self < other or self == other
+
 class Deck(object):
 
 	def __init__(self):
@@ -78,6 +94,8 @@ class Hand(object):
 
 	def __init__(self, label=""):
 		'''Creates an empty collection with the given label'''
+		self.label = label
+		self.cards = []
 
 	def add(self, card):
 		'''Add a card to the hand
@@ -85,12 +103,18 @@ class Hand(object):
 		pre: s <- |cards| /\ !(card in cards)
 		post: |cards| = s + 1 /\ card min cards
 		'''
+		self.cards.append(card)
 
 	def sort(self):
 		'''Arranges the cards in descending bridge order
 		ctx: s <- |cards|
 		post: forall i in [0, s - 1] ==> cards[i] <_{bridge} cards[i + 1]
 		'''
+		self.cards.sort()
+		self.cards.reverse()
 
 	def dump(self):
 		'''Print the content of the hand'''
+		print self.label + "'s Cards:"
+		for card in self.cards:
+			print "  ", card
