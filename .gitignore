@@ -1,1 +1,4 @@
 venv
+.idea/
+tarjan/tarjan.iml
+*.pyc
