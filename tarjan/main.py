@@ -4,5 +4,5 @@ from profiler.sorting import SortingProfiler
 p = SortingProfiler(selection_sort)
 p.test()
 
-p = SortingProfiler(selection_sort, size = 10000)
+p = SortingProfiler(selection_sort, size = 10)
 p.test()
