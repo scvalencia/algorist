@@ -34,7 +34,7 @@ def merge_sort(alist):
             else:
                 alist[k]=righthalf[j]
                 j = j + 1
-            k = k + 1
+            k = k +
 
         while i < len(lefthalf):
             alist[k] = lefthalf[i]

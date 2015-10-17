@@ -5,8 +5,9 @@ class Card(object):
 	SUITS = 'cdhs'
 	SUIT_NAMES = ['clubs', 'diamonds', 'hearts', 'spades']
 	RANK = range(1, 14)
-	RANK_NAMES = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 
+	RANK_NAMES = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
 				'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
+				
 
 	def __init__(self, suit, rank):
 		self.rank_num = rank
@@ -30,7 +31,7 @@ class Card(object):
 		return self.rank_name() + ' of ' + self.suit_name()
 
 	def __eq__(self, other):
-		return (self.suit_char == other.suit_char and 
+		return (self.suit_char == other.suit_char and
 			self.rank_num == other.rank_num)
 
 	def __lt__(self, other):
