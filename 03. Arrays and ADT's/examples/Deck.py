@@ -7,7 +7,6 @@ class Card(object):
 	RANK = range(1, 14)
 	RANK_NAMES = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
 				'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King']
-				
 
 	def __init__(self, suit, rank):
 		self.rank_num = rank
