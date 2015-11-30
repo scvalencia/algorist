@@ -2,6 +2,7 @@
 # book on data structures and algorithms using Python
 
 import math
+import datetime
 
 # CHAPTER 1
 
@@ -160,6 +161,18 @@ def print_calendar(date):
 
 # E-1.04
 
+class Date03(Date02):
+
+	def __init__(self, month = 0, day = 0, year = 0):
+		if month == day == year == 0:
+			date = datetime.datetime.now()
+
+			month = date.month
+			day = date.day
+			year = date.year
+
+		Date02.__init__(self, month, day, year)
+
 # PROJECTS
 
 # P-1.01
@@ -185,8 +198,9 @@ def print_calendar(date):
 # P-1.11
 
 def main():
-	d = Date02(11, 5, 2015)
+	d = Date03()
 	print_calendar(d)
+	
 
 if __name__ == '__main__':
 	main()
