@@ -16,8 +16,6 @@ class Date(object):
 		self.month = month
 		self.year = year
 
-		print day, month, year
-
 		leap = self.is_leap()
 
 		self.days_per_month = {1 : 31, 2 : 29 if leap else 28, 3 : 31, 4 : 30, 5 : 31, 6 : 30, 
@@ -126,6 +124,40 @@ class Date02(Date):
 
 # E-1.03
 
+def print_calendar(date):
+	month = date.month_name()
+	year = date.year
+
+	init = Date(date.month, 1, year)
+	day = init.day_of_week()[0]
+
+	print (month + ' ' + str(year)).center(20)
+	print 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'
+
+	pos = [i for i in range(1, 7 - day + 1)]
+	pre = [' ' for i in range(7 - len(pos))]
+
+	tpl = pre + pos
+	row = tuple([i * 2 if i == ' ' else i for i in tpl])
+
+
+	print "%2s %2s %2s %2s %2s %2s %2s" % row
+
+	last = tpl[-1]
+	stop = date.days_per_month[date.month]
+
+	while last < stop:
+		row = ()
+		tpl = [i for i in range(last + 1, last + 1 + 7)]
+		if stop in tpl:
+			row = tuple(map(lambda x : x if x <= stop else ' ', tpl))
+		else:
+			row = tuple([i * 2 if i == ' ' else i for i in tpl])
+
+		print "%2s %2s %2s %2s %2s %2s %2s" % row
+
+		last += 7
+
 # E-1.04
 
 # PROJECTS
@@ -153,8 +185,8 @@ class Date02(Date):
 # P-1.11
 
 def main():
-	d = Date02(2, 1, 2000)
-	print d.as_gregorian('/')
+	d = Date02(11, 5, 2015)
+	print_calendar(d)
 
 if __name__ == '__main__':
 	main()
