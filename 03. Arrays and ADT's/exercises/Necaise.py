@@ -1,7 +1,10 @@
 # Code for the exercises in Necaise's
 # book on data structures and algorithms using Python
 
+import sys
 import math
+import time
+import random
 import datetime
 
 # CHAPTER 1
@@ -98,6 +101,15 @@ class Date(object):
 	def __le__(self, arg_date):
 		return self.julian_day <= arg_date.julian_day
 
+def date_handler():
+	date1 = Date(9, 11, 2015)
+	date2 = Date(9, 11, 2016)
+	print date1.julian_day
+	print date1.num_days(date2)
+	print date1
+	print date1.next()
+	print date1.advance(300)
+
 # E-1.02
 
 class Date02(Date):
@@ -122,6 +134,13 @@ class Date02(Date):
 		return ('0' + str(self.day) if self.day < 10 else str(self.day)) + \
 				divchar + ('0' + str(self.month) if self.month < 10 else str(self.month)) + \
 				divchar + str(self.year)
+
+def date02_handler():
+	date = Date02(9, 11, 2015)
+	print date.day_of_week_name()
+	print date.day_of_year()
+	print date.is_weekday()
+	print date.as_gregorian('-') 
 
 # E-1.03
 
@@ -159,6 +178,10 @@ def print_calendar(date):
 
 		last += 7
 
+def print_calendar_handler():
+	date = Date(9, 11, 2015)
+	print_calendar(date)
+
 # E-1.04
 
 class Date03(Date02):
@@ -173,11 +196,123 @@ class Date03(Date02):
 
 		Date02.__init__(self, month, day, year)
 
+def date03_handler():
+	date = Date03()
+	print date
+
 # PROJECTS
 
 # P-1.01
 
+'''
+ClickCounter ADT
+
+A model of a small hand-held device that contains a push button and a count display.
+To increment the counter, the button is pushed and thw new count shows in the display
+
+	ClickCounter() : Creates a new ClickCounter display instance
+
+	push() : Increment the count and display it
+
+	display() : Shows the current count
+
+	reset() : Sets the counter to zero
+
+'''
+
+class ClickCounter(object):
+
+	def __init__(self):
+		self.click = 0
+		self.display()
+
+	def push(self):
+		self.click += 1
+		self.display()
+
+	def display(self):
+		print self.click
+
+	def reset(self):
+		self.click = 0
+		self.display()
+
+def click_counter_handler():
+	cc = ClickCounter()
+	time.sleep(2)
+	cc.push()
+	time.sleep(2)
+	cc.push()
+	time.sleep(2)
+	cc.reset()
+
 # P-1.02
+
+class Bag(object):
+
+	def __init__(self):
+		self._body = []
+
+	def __len__(self):
+		return len(self._body)
+
+	def __contains__(self, item):
+		return item in self._body
+
+	def add(self, item):
+		self._body.append(item)
+
+	def remove(self, item):
+		assert item in self._body, "The item must be in the bag."
+		index = self._body.index(item)
+		return self._body.pop(index)
+
+	def __iter__(self):
+		return BagIterator(self._body)
+
+class BagIterator(object):
+
+	def __init__(self, lst):
+		self._items = lst
+		self._current = 0
+
+	def __iter__(self):
+		return self
+
+	def next(self):
+		if self._current < len(self._items):
+			item = self._items[self._current]
+			self._current += 1
+			return item
+		else:
+			raise StopIteration("error")
+
+class GrabBag(Bag):
+
+	def __init__(self):
+		Bag.__init__(self)
+
+	def grab_item(self):
+		index = random.randint(0, len(self) - 1)
+		return self._body.pop(index)
+
+	def __iter__(self):
+		return BagIterator(self._body)
+
+def grab_bag_handler():
+	gb = GrabBag()
+	gb.add(1)
+	gb.add(8)
+	gb.add(9)
+
+	for itm in gb:
+		print itm,
+
+	print
+	print gb.grab_item()
+
+	for itm in gb:
+		print itm,
 
 # P-1.03
 
@@ -198,8 +333,15 @@ class Date03(Date02):
 # P-1.11
 
 def main():
-	d = Date03()
-	print_calendar(d)
+	menu = {'e-01-01' : date_handler, 'e-01-02' : date02_handler, 'e-01-03' : print_calendar_handler, \
+		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler}
+	
+	if sys.argv[1] in menu:
+		foo = menu[sys.argv[1]]
+		foo()
+
+	else:
+		print 'Wrong exercise'
 	
 
 if __name__ == '__main__':
