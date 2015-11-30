@@ -296,9 +296,6 @@ class GrabBag(Bag):
 		index = random.randint(0, len(self) - 1)
 		return self._body.pop(index)
 
-	def __iter__(self):
-		return BagIterator(self._body)
-
 def grab_bag_handler():
 	gb = GrabBag()
 	gb.add(1)
@@ -315,6 +312,29 @@ def grab_bag_handler():
 		print itm,
 
 # P-1.03
+
+class CountingBag(Bag):
+
+	def __init__(self):
+		Bag.__init__(self)
+
+	def num_of(self, item):
+		occurrences = 0
+
+		for itm in self:
+			if itm == item:
+				occurrences += 1
+
+		return occurrences
+
+def counting_bag_handler():
+	cb = CountingBag()
+	cb.add(1)
+	cb.add(8)
+	cb.add(9)
+	cb.add(1)
+
+	print cb.num_of(1)
 
 # P-1.04
 
@@ -334,7 +354,8 @@ def grab_bag_handler():
 
 def main():
 	menu = {'e-01-01' : date_handler, 'e-01-02' : date02_handler, 'e-01-03' : print_calendar_handler, \
-		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler}
+		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler, \
+		'p-01-03' : counting_bag_handler}
 	
 	if sys.argv[1] in menu:
 		foo = menu[sys.argv[1]]
