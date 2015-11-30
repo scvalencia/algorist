@@ -101,6 +101,29 @@ class Date(object):
 
 # E-1.02
 
+class Date02(Date):
+
+	def __init__(self, month, day, year):
+		Date.__init__(self, month, day, year)
+
+	def day_of_week_name(self):
+		d, string = self.day_of_week()
+		days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+		return days[d]
+
+	def day_of_year(self):
+		init = Date(1, 1, self.year)
+		return init.num_days(self) + 1
+
+	def is_weekday(self):
+		d, string = self.day_of_week()
+		return d in [1, 2, 3, 4, 5]
+
+	def as_gregorian(self, divchar = '/'):
+		return ('0' + str(self.day) if self.day < 10 else str(self.day)) + \
+				divchar + ('0' + str(self.month) if self.month < 10 else str(self.month)) + \
+				divchar + str(self.year)
+
 # E-1.03
 
 # E-1.04
@@ -130,8 +153,8 @@ class Date(object):
 # P-1.11
 
 def main():
-	d = Date(2, 14, 2000)
-	print d.advance(17)
+	d = Date02(2, 1, 2000)
+	print d.as_gregorian('/')
 
 if __name__ == '__main__':
 	main()
