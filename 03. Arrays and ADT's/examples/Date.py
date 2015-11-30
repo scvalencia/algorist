@@ -21,17 +21,17 @@ dayOfWeek():
 	Returns the day of the week as a number between 0 and 6 with 0 representing Monday 
 	and 6 representing Sunday.
 
-numDays( otherDate ): 
+numDays(otherDate): 
 	Returns the number of days as a positive integer be- tween this date and the otherDate.
 
 isLeapYear(): 
 	Determines if this date falls in a leap year and returns the appropriate boolean value.􏰂
 􏰂
-advanceBy( days ): 
+advanceBy(days): 
 	Advances the date by the given number of days. The date is incremented if days is positive 
 	and decremented if days is negative. The date is capped to November 24, 4714 BC, if necessary.
 
-comparable ( otherDate ): 
+comparable(otherDate): 
 	Compares this date to the otherDate to deter- mine their logical ordering. 
 	This comparison can be done using any of the logical operators <, <=, >, >=, ==, !=.
 
@@ -44,18 +44,16 @@ toString ():
 class Date(object):
 
 	def __init__(self, month, day, year):
-		self.month = month
-		self.day = day
-		self.year = year
+		self._julian_date = 0
+		assert self._is_valid(), "Invalid Gregorian Date"
 
 		tmp = -1 if month < 3 else 0
+
 		self.julian_day =  day - 32075 + (1461 * (year + 4800 + tmp) // 4) + \
 			(367 * (month - 2 - tmp * 12) // 12) - \
 			(3 * ((year + 4900 + tmp) // 100) // 4)
 
-		assert self._is_invalid(), "Invalid Gregorian Date"
-
-	def _is_invalid(self):
+	def _is_valid(self):
 		return True
 
 	def _to_gregorian(self):
@@ -73,6 +71,3 @@ class Date(object):
 
 	def __str__(self):
 		return ''
-
-
-
