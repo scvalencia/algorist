@@ -338,6 +338,74 @@ def counting_bag_handler():
 
 # P-1.04
 
+class StudentRecord(object):
+
+	def __init__(self, student_id, first_name, last_name, year, gpa):
+		self._year_dct = {1 : 'Freshman', 2 : 'Sophomore', 3 : 'Junior', 4 : 'Senior'}
+		self.id = student_id
+		self.first_name = first_name
+		self.last_name = last_name
+		self.year = self._year_dct[year]
+		self.gpa = gpa
+
+class StudentFileReader(object):
+
+	def __init__(self, file_name):
+		self._file_name = file_name
+		self._file_object = None
+
+	def open(self):
+		self._file_object = open(self._file_name, 'r')
+
+	def close(self):
+		self._file_object.close()
+		self._file_object = None
+
+	def _fetch_one(self):
+		line = self._file_object.readline()
+		if line == "":
+			return None
+
+		student_id, first_name, last_name, year, gpa = tuple(map(lambda x : x.replace(' ', ''), line.split(',')))
+		student_id = int(student_id)
+		year = int(year)
+		gpa = float(gpa)
+
+		student = StudentRecord(student_id, first_name, last_name, year, gpa)
+		return student
+
+	def fetch_all(self):
+		records = []
+
+		student = self._fetch_one()
+
+		while student != None:
+			records.append(student)
+			student = self._fetch_one()
+
+		return records
+
+def students_record_handler():
+
+	sfr = StudentFileReader('students.txt')
+	sfr.open()
+	students = sfr.fetch_all()
+	sfr.close()
+
+	students.sort(key = lambda s : s.id)
+
+	print 'LIST OF STUDENTS'.center(50)
+	print 
+	print "%-5s %-25s %-10s %-4s" % ('ID', 'NAME', 'CLASS', 'GPA')
+	print "%5s %25s %10s %4s" % ('-' * 5, '-' * 25, '-' * 10, '-' * 4)
+
+	for student in students:
+		print '%5d %-25s %-10s %4.2f' % (student.id, student.last_name + ', ' + student.first_name,
+			student.year, student.gpa)
+
+	print '-' * 47
+	print 'Number of students: ', len(students)
+
 # P-1.05
 
 # P-1.06
@@ -355,7 +423,7 @@ def counting_bag_handler():
 def main():
 	menu = {'e-01-01' : date_handler, 'e-01-02' : date02_handler, 'e-01-03' : print_calendar_handler, \
 		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler, \
-		'p-01-03' : counting_bag_handler}
+		'p-01-03' : counting_bag_handler, 'p-01-04' : students_record_handler}
 	
 	if sys.argv[1] in menu:
 		foo = menu[sys.argv[1]]
