@@ -832,27 +832,6 @@ def P2_38():
 	handler()
 
 
-# P-2.39
-
-class Polygon(metaclass = ABCMeta):
-
-	@abstractmethod
-	def area():
-		pass
-
-	@abstractmethod
-	def polygon():
-		pass
-
-class Triangle(Polygon):
-
-	def __init__(self, vertices):
-		pass
-
-def P2_39():
-	pass
-
-
 def main():
 	P2_38()
 
