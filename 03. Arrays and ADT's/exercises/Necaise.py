@@ -498,6 +498,38 @@ def student_file_writer_handler():
 
 # P-1.06
 
+'''
+Time ADT
+
+A simple ADT to represent the time of the day, for any 24-hour period,
+as the number of seconds that have elapsed since midnight
+
+	Time(hour, minutes, seconds) : Creates a new Time instance and initializes 
+	it with the given time.
+
+	hour() : Returns the hour part of the time.
+
+	minutes() : Returns the minutes part of the time.
+
+	seconds() : Returns the seconds part of the time.
+
+	numSeconds(otherTime) : Returns the number of seconds as a positive 
+	integer between this time and the otherTime.
+
+	isAM() : Determines if this time is ante meridiem or before midday 
+	(at or before 12 o’clock noon).
+
+	isPM() : Determines if this time is post meridiem or after midday (after
+	12 o’clock noon).
+
+	comparable(otherTime) : Compares this time to the otherTime to de- termine their 
+	logical ordering. This comparison can be done using any of the Python logical operators.
+
+	toString(): Returns a string representing the time in the 12-hour format hh:mm:ss. 
+	Invoked by calling Python’s str() constructor.
+
+'''
+
 # P-1.07
 
 # P-1.08
