@@ -408,6 +408,94 @@ def students_record_handler():
 
 # P-1.05
 
+class StudentFileWriter(object):
+
+	def __init__(self, records):
+		self.records = records
+
+	def sort_records(self, key, descending = False):
+		if key == 'sid':
+			self.records.sort(key = lambda student : student.id)
+		elif key == 'fname':
+			self.records.sort(key = lambda student : student.first_name)
+		elif key == 'lname':
+			self.records.sort(key = lambda student : student.last_name)
+		elif key == 'year':
+			self.records.sort(key = lambda student : student.year)
+		elif key == 'gpa':
+			self.records.sort(key = lambda student : student.gpa)
+
+		if descending:
+			self.records.reverse()
+
+	def write_to_file(self, file_name):
+		file_object = open(file_name, 'w')
+
+		file_object.write('LIST OF STUDENTS\n'.center(50))
+		file_object.write('\n')
+		file_object.write("%-5s %-25s %-10s %-4s\n" % ('ID', 'NAME', 'CLASS', 'GPA'))
+		file_object.write("%5s %25s %10s %4s\n" % ('-' * 5, '-' * 25, '-' * 10, '-' * 4))
+
+		for student in self.records:
+			file_object.write('%5d %-25s %-10s %4.2f\n' % (student.id, student.last_name + ', ' + student.first_name,
+				student.year, student.gpa))
+
+		file_object.write('-' * 47 + '\n') 
+		file_object.write('Number of students: ' +  str(len(self.records)) + '\n')
+
+		file_object.close()
+
+
+	def print_to_terminal(self):
+		print 'LIST OF STUDENTS'.center(50)
+		print 
+		print "%-5s %-25s %-10s %-4s" % ('ID', 'NAME', 'CLASS', 'GPA')
+		print "%5s %25s %10s %4s" % ('-' * 5, '-' * 25, '-' * 10, '-' * 4)
+
+		for student in self.records:
+			print '%5d %-25s %-10s %4.2f' % (student.id, student.last_name + ', ' + student.first_name,
+				student.year, student.gpa)
+
+		print '-' * 47
+		print 'Number of students: ', len(self.records)
+
+def student_file_writer_handler():
+	sfr = StudentFileReader('students.txt')
+	sfr.open()
+	students = sfr.fetch_all()
+	sfr.close()
+
+	print '=' * 70
+	print 'Welcome to the SUR system, a system for generating reports on'
+	print 'Smalltown University students.'
+	print
+
+	print 
+	key = raw_input('Enter the sorting key: sid, fname, lname, year, gpa: ')
+	key = key.strip()
+	assert key in ['sid', 'fname', 'lname', 'year', 'gpa']
+	print
+
+	asc = input('Write (1) if you want the report in descending order, (2) otherwise: ')
+
+	print 
+	output_file = input('Enter the output file: (1) file, (2) terminal: ')
+	assert output_file in [1, 2], "Invalid option"
+
+	sfw = StudentFileWriter(students)
+	sfw.sort_records(key, True if asc == 1 else False)
+
+	file_name = ''
+	if output_file == 1:
+		print 
+		file_name = raw_input('Enter the file name: ')
+		sfw.write_to_file(file_name)
+
+	else:
+		sfw.print_to_terminal()
+
+	print '=' * 70
+
 # P-1.06
 
 # P-1.07
@@ -423,7 +511,8 @@ def students_record_handler():
 def main():
 	menu = {'e-01-01' : date_handler, 'e-01-02' : date02_handler, 'e-01-03' : print_calendar_handler, \
 		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler, \
-		'p-01-03' : counting_bag_handler, 'p-01-04' : students_record_handler}
+		'p-01-03' : counting_bag_handler, 'p-01-04' : students_record_handler, \
+		'p-01-05' : student_file_writer_handler}
 	
 	if sys.argv[1] in menu:
 		foo = menu[sys.argv[1]]

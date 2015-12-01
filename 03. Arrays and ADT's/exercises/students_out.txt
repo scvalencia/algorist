@@ -1,0 +1,17 @@
+                LIST OF STUDENTS
+                 
+ID    NAME                      CLASS      GPA 
+----- ------------------------- ---------- ----
+10200 Roberts, Sally            Freshman   4.00
+10208 Green, Patrick            Junior     3.95
+10175 Smith, Jane               Senior     3.92
+10334 Roberts, Jane             Senior     3.81
+10400 Logan, Mark               Junior     3.33
+10188 Wales, Sam                Senior     3.25
+10015 Smith, John               Sophomore  3.01
+10226 Nelson, Amy               Sophomore  2.95
+10485 Brown, Jessica            Sophomore  2.91
+10167 Jones, Wendy              Junior     2.85
+10387 Taylor, Susan             Sophomore  2.15
+-----------------------------------------------
+Number of students: 11
