@@ -519,8 +519,7 @@ def main():
 		foo()
 
 	else:
-		print 'Wrong exercise'
-	
+		print 'Wrong exercise'	
 
 if __name__ == '__main__':
 	main()
