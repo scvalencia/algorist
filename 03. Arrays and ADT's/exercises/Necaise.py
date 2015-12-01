@@ -530,9 +530,47 @@ as the number of seconds that have elapsed since midnight
 
 '''
 
-# P-1.07
+# P-1.07 Boring
 
 # P-1.08
+
+'''
+Line ADT
+
+An ADT to represent a line segment in \mathbb{R}^2
+
+	LineSegment(ptA, ptB) : Creates a new Line Segment instance defined by the two Point objects.
+
+	endPointA(): Returns the first endpoint of the line.
+
+	endPointB(): Returns the second endpoint of the line.
+
+	length (): Returns the length of the line segment given as the Euclidean distance 
+	between the two endpoints.
+
+	toString (): Returns a string representation of the line segment in the format (Ax, Ay)#(Bx, By).
+
+	isVertical(): Is the line segment parallel to the y-axis?
+
+	isHorizontal(): Is the line segment parallel to the x-axis?
+
+	isParallel( otherLine ): Is this line segment parallel to the otherLine?
+
+	isPerpendicular( otherLine ): Is this line segment perpendicular to the otherLine?
+
+	intersects(otherLine ): Does this line segment intersect the otherLine?
+
+	bisects( otherLine ): Does this line segment bisect the otherLine?
+
+	slope(): Returns the slope of the line segment given as the rise over the run. If the line 
+	segment is vertical, None is returned.
+
+	shift( xInc, yInc ): Shifts the line segment by xInc amount along the x-axis and yInc amount 
+	along the y-axis.
+
+	midpoint(): Returns the midpoint of the line segment as a Point object.
+
+'''
 
 # P-1.09
 
