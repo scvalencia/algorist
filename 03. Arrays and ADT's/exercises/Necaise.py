@@ -504,29 +504,29 @@ Time ADT
 A simple ADT to represent the time of the day, for any 24-hour period,
 as the number of seconds that have elapsed since midnight
 
-	Time(hour, minutes, seconds) : Creates a new Time instance and initializes 
+	Time(hour, minutes, seconds): Creates a new Time instance and initializes 
 	it with the given time.
 
-	hour() : Returns the hour part of the time.
+	hour(): Returns the hour part of the time.
 
-	minutes() : Returns the minutes part of the time.
+	minutes(): Returns the minutes part of the time.
 
-	seconds() : Returns the seconds part of the time.
+	seconds(): Returns the seconds part of the time.
 
-	numSeconds(otherTime) : Returns the number of seconds as a positive 
+	numSeconds(otherTime): Returns the number of seconds as a positive 
 	integer between this time and the otherTime.
 
-	isAM() : Determines if this time is ante meridiem or before midday 
-	(at or before 12 o’clock noon).
+	isAM(): Determines if this time is ante meridiem or before midday 
+	(at or before 12 o'clock noon).
 
-	isPM() : Determines if this time is post meridiem or after midday (after
-	12 o’clock noon).
+	isPM(): Determines if this time is post meridiem or after midday (after
+	12 o'clock noon).
 
-	comparable(otherTime) : Compares this time to the otherTime to de- termine their 
+	comparable(otherTime): Compares this time to the otherTime to determine their 
 	logical ordering. This comparison can be done using any of the Python logical operators.
 
 	toString(): Returns a string representing the time in the 12-hour format hh:mm:ss. 
-	Invoked by calling Python’s str() constructor.
+	Invoked by calling Python's str() constructor.
 
 '''
 
@@ -539,38 +539,106 @@ Line ADT
 
 An ADT to represent a line segment in \mathbb{R}^2
 
-	LineSegment(ptA, ptB) : Creates a new Line Segment instance defined by the two Point objects.
+	LineSegment(ptA, ptB): Creates a new Line Segment instance defined by the two Point objects.
 
 	endPointA(): Returns the first endpoint of the line.
 
 	endPointB(): Returns the second endpoint of the line.
 
-	length (): Returns the length of the line segment given as the Euclidean distance 
+	length(): Returns the length of the line segment given as the Euclidean distance 
 	between the two endpoints.
 
-	toString (): Returns a string representation of the line segment in the format (Ax, Ay)#(Bx, By).
+	toString(): Returns a string representation of the line segment in the format (Ax, Ay)#(Bx, By).
 
 	isVertical(): Is the line segment parallel to the y-axis?
 
 	isHorizontal(): Is the line segment parallel to the x-axis?
 
-	isParallel( otherLine ): Is this line segment parallel to the otherLine?
+	isParallel(otherLine): Is this line segment parallel to the otherLine?
 
-	isPerpendicular( otherLine ): Is this line segment perpendicular to the otherLine?
+	isPerpendicular(otherLine): Is this line segment perpendicular to the otherLine?
 
-	intersects(otherLine ): Does this line segment intersect the otherLine?
+	intersects(otherLine): Does this line segment intersect the otherLine?
 
-	bisects( otherLine ): Does this line segment bisect the otherLine?
+	bisects(otherLine): Does this line segment bisect the otherLine?
 
 	slope(): Returns the slope of the line segment given as the rise over the run. If the line 
 	segment is vertical, None is returned.
 
-	shift( xInc, yInc ): Shifts the line segment by xInc amount along the x-axis and yInc amount 
+	shift(xInc, yInc): Shifts the line segment by xInc amount along the x-axis and yInc amount 
 	along the y-axis.
 
 	midpoint(): Returns the midpoint of the line segment as a Point object.
 
 '''
+
+class Point(object):
+
+	def __init__(self, x, y):
+		self.x = float(x)
+		self.y = float(y)
+
+class LineSegment(object):
+
+	EPSILON = 0.00003
+
+	def __init__(self, point_a, point_b):
+		self.point_a = point_a
+		self.point_b = point_b
+
+	def end_pointa(self):
+		return self.point_a
+
+	def end_pointb(self):
+		return self.point_b
+
+	def length(self):
+		length = math.sqrt((self.point_a.x - self.point_b.x) ** 2 + \
+			(self.point_a.y - self.point_b.y) ** 2)
+
+		return length
+
+	def slope(self):
+		return (self.point_b.y - self.point_a.y) / (self.point_b.x - self.point_a.x)
+
+	def is_parallel(self, other):
+		return self.slope() == other.slope()
+
+	def is_perpendicular(self, other):
+		return self.slope() * other.slope() in [-1 - self.EPSILON, -1 + self.EPSILON]
+
+	def is_vertical(self, other):
+		return self.slope == 0.0
+
+	def is_horizontal(self, other):
+		return self.is_parallel(LineSegment(Point(1, 1), Point(-1, 1)))
+
+	def intersects(self, other):
+		pass
+
+	def bisects(self, other):
+		pass
+
+	def shift(self):
+		pass
+
+	def midpoint(self):
+		pass
+
+	def __str__(self):
+		return "(%.2f, %.2f)#(%.2f, %.2f)" % \
+			(self.point_a.x, self.point_a.y, self.point_b.x, self.point_b.y)
+
+
+def linesegment_handler():
+	p1 = Point(-1, 4)
+	p2 = Point(2, -2)
+
+	l = LineSegment(p1, p2)
+	print l.length()
+	print l.slope()
+	print l.is_vertical(l)
+
 
 # P-1.09
 
@@ -736,7 +804,7 @@ def main():
 	menu = {'e-01-01' : date_handler, 'e-01-02' : date02_handler, 'e-01-03' : print_calendar_handler, \
 		'e-01-04' : date03_handler, 'p-01-01' : click_counter_handler, 'p-01-02' : grab_bag_handler, \
 		'p-01-03' : counting_bag_handler, 'p-01-04' : students_record_handler, \
-		'p-01-05' : student_file_writer_handler}
+		'p-01-05' : student_file_writer_handler, 'p-01-08' : linesegment_handler}
 	
 	if sys.argv[1] in menu:
 		foo = menu[sys.argv[1]]
