@@ -673,6 +673,44 @@ def linesegment_handler():
 
 # P-1.09
 
+'''
+Polygon ADT
+
+An ADT to represent a polygon in \mathbb{R}^2. A polygon is a plane figure that is bounded 
+by a finite chain of straight line segments closing in a loop to form a closed chain or 
+circuit. These segments are called its edges or sides, and the points where two edges meet 
+are the polygon's vertices (singular: vertex) or corners. The interior of the polygon is 
+sometimes called its body. An n-gon is a polygon with n sides. A polygon is a 2-dimensional 
+example of the more general polytope in any number of dimensions.
+
+	Polygon(points): creates a polygon given a set of points
+
+	sides(): returns the number of sides of the polygon
+
+	area(): returns the area of the polygon
+
+	perimeter(): returns the perimeter of the polygon
+
+	triangulation(): returns the minimum cost polygon triangulation
+
+		A triangulation of a convex polygon is formed by drawing diagonals between non-adjacent 
+		vertices (corners) such that the diagonals never intersect. The problem is to find the 
+		cost of triangulation with the minimum cost. The cost of a triangulation is sum of the 
+		weights of its component triangles. Weight of each triangle is its perimeter 
+		(sum of lengths of all sides)
+
+	inside(point): return True if the point lies inside the polygon
+
+	bounds(): returns a rectangular bound for the perimeter
+
+	string(): returns a string representation of a polygon
+
+	save(filename): saves the polygon to a file
+
+	draw: returns HTML code with thw draw of the polygon 
+
+'''
+
 # P-1.10
 
 # P-1.11
