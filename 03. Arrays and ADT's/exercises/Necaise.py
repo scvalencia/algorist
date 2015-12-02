@@ -671,7 +671,6 @@ def linesegment_handler():
 
 	print l1.intersects(l2)
 
-
 # P-1.09
 
 # P-1.10
