@@ -707,6 +707,8 @@ example of the more general polytope in any number of dimensions.
 
 	save(filename): saves the polygon to a file
 
+	scale(pxx): returns a scaled version of the polygon
+
 	draw: returns HTML code with thw draw of the polygon 
 
 '''
