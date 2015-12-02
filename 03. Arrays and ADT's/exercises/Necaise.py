@@ -577,6 +577,21 @@ class Point(object):
 	def __init__(self, x, y):
 		self.x = float(x)
 		self.y = float(y)
+ 
+def orientation(p0, p1, p2):
+ 	x1 = p1.x - p0.x
+ 	y1 = p1.y - p0.y
+ 	x2 = p2.x - p0.x
+ 	y2 = p2.y - p0.y
+
+ 	det = x1 * y2 - x2 * y1
+
+ 	return (0 if det == 0 else (1 if det > 0 else 2))
+
+def onsegment(p0, p1, p2):
+	if p2.x >= min(p0.x, p1.x) and p2.x <= max(p0.x, p1.x):
+		return 1
+	return 0
 
 class LineSegment(object):
 
@@ -614,16 +629,23 @@ class LineSegment(object):
 		return self.is_parallel(LineSegment(Point(1, 1), Point(-1, 1)))
 
 	def intersects(self, other):
-		pass
 
-	def bisects(self, other):
-		pass
+		p1, q1 = self.point_a, self.point_b
+		p2, q2 = self.point_b, self.point_b
 
-	def shift(self):
-		pass
+		o1 = orientation(p1, q1, q2)
+		o2 = orientation(p1, q1, p2)
+		o3 = orientation(p2, q2, p1)
+		o4 = orientation(p2, q2, q1)
 
-	def midpoint(self):
-		pass
+		if o1 != o2 and o3 != o4:
+			return True
+
+		if(o1 == o2 == o3 == o4 == 0):
+			if(onsegment(p1, q1, p2) or onsegment(p1, q1, q2)):
+				return True
+
+		return False
 
 	def __str__(self):
 		return "(%.2f, %.2f)#(%.2f, %.2f)" % \
@@ -638,6 +660,16 @@ def linesegment_handler():
 	print l.length()
 	print l.slope()
 	print l.is_vertical(l)
+
+	p1 = Point(1, 1)
+	q1 = Point(10, 1)
+	p2 = Point(1, 3)
+	q2 = Point(10, 2)
+
+	l1 = LineSegment(p1, q1)
+	l2 = LineSegment(p2, q2)
+
+	print l1.intersects(l2)
 
 
 # P-1.09
